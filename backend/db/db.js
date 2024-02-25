@@ -1,15 +1,20 @@
 //everytime from req taken see to check that like valid add that for everything
 
-const mysql2 = require('mysql2');
+const { Pool } = require('pg');
 const dotenv = require('dotenv');
 dotenv.config();
+let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 
-const pool = mysql2.createPool({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database
-}).promise();
+const pool = new Pool({
+    host: PGHOST,
+    database: PGDATABASE,
+    username: PGUSER,
+    password: PGPASSWORD,
+    port: 5432,
+    ssl: {
+      require: true,
+    },
+  });
 
 
 //sending usernames according to role 
