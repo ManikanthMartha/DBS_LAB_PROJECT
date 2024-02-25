@@ -15,6 +15,7 @@ function verify_patient(req, res, next) {
             message: 'Unauthorized aato access the page'
         });
     }
+    
     const authorization = req.headers['authorization'];//token in header stored
     console.log(authorization);
     const token = authorization.split(' ')[1];
